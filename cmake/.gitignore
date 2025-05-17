@@ -1,0 +1,39 @@
+# === 编译生成文件 ===
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# === 可执行文件和调试文件 ===
+*.out
+*.o
+*.a
+*.so
+*.exe
+*.dll
+*.dylib
+*.log
+*.dSYM/
+
+# === VSCode 项目配置（本地）===
+.vscode/
+
+# === Python 相关===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# === ROS 相关===
+devel/
+install/
+log/
+
+# === 通用缓存文件 ===
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
