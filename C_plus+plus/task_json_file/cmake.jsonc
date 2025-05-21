@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "CMake Configure",
+        "type": "shell",   //这个任务运行在 shell 中
+        "command": "cmake", //这里是调用 CMake,可替换成其他命令（如 make, g++, python）
+        "args": [
+          "-S",
+          "${workspaceFolder}", //是 VSCode 内置变量, 指的是你打开的项目根路径
+          "-B",
+          "${workspaceFolder}/build"
+        ],                     //这个没有group 也执行了，是因为它是被第二个任务自动调用的 (dependsOn)
+        "problemMatcher": []  //告诉 VSCode 如何解析编译器的错误和警告，以便在编辑器中高亮。
+        //等价于  cmake -S . -B build
+      },
+      {
+        "label": "CMake Build",
+        "type": "shell",
+        "command": "cmake",
+        "args": [
+          "--build",
+          "${workspaceFolder}/build"
+        ],
+        "dependsOn": ["CMake Configure"], //含义：表示执行本任务之前必须先执行哪些任务,（只有需要多任务串联时才写）
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",   //只能执行带有 "group": { "kind": "build", "isDefault": true } 的任务，简称“默认构建任务”，
+                            // 才能用 cmd+shift+B 快速运行
+          "isDefault": true  //表示：当你按下 Cmd+Shift+B 时默认运行这个任务
+        }
+      }
+    ]
+  }
+  

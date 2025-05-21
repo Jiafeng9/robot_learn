@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "GCC Compiler",  
+            "type": "cppbuild", // cmd + shift + B 运行编译任务
+            "compiler": "g++", 
+            "command": "g++", 
+            "args": [
+                "-fdiagnostics-color=always", // 彩色输出
+                "-Wall",                      // 开启所有警告
+                "-g",                         // 生成调试信息
+                "${workspaceFolder}/src/*.cpp", // 编译 src 目录下的所有 C++ 源文件
+                "-o",                         // 输出到：
+                "${workspaceFolder}/bin/${fileBasenameNoExtension}" // 同目录下输出为去掉后缀的可执行文件
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/src" // 设置当前工作目录为 src 目录
+            },
+            "problemMatcher": [
+                "$gcc" // 让 VSCode 能够识别编译错误并高亮
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "使用 g++ 编译当前打开的 C++ 源文件"
+        }
+    ]//    equal = /usr/bin/g++ -fdiagnostics-color=always -Wall -g src/*.cpp -o main
+}
